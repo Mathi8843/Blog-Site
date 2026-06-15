@@ -63,7 +63,7 @@ export function getAllLogs() {
 export function getAllProjects() {
   const files = readDirSafe(projectsDir);
   const projects = files.map((file) => {
-    const raw = fs.readFileSync(path.join(projectsDir, file), "utf8");
+    const raw = fs.readFileSync(path.join(projectsDir, path.basename(file)), "utf8");
     const { data } = matter(raw);
     return data as ProjectFrontmatter;
   });
