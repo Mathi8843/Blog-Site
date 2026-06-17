@@ -42,7 +42,7 @@ export function getLogSlugs(): string[] {
 }
 
 export function getLogBySlug(slug: string) {
-  const fullPath = path.join(logsDir, `${slug}.md`);
+  const fullPath = path.join(logsDir, `${slug.replace(/[^a-zA-Z0-9_-]/g, '').toLowerCase()}.md`);
   const raw = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(raw);
   const fm = data as LogFrontmatter;
