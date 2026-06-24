@@ -11,7 +11,7 @@ const files = fs.existsSync(logsDir) ? fs.readdirSync(logsDir).filter((f) => f.e
 
 const index = files.map((file) => {
   const slug = file.replace(/\.md$/, "");
-  const raw = fs.readFileSync(path.join(logsDir, path.basename(file)), "utf8");
+  const raw = fs.readFileSync(path.join(logsDir, path.basename(file)), 'utf8'); // NOTE: Ensure 'file' variable is sanitized or validated to prevent path traversal attacks. Consider using a whitelist of allowed files or validating the 'file' variable against a set of expected values.
   const { data, content } = matter(raw);
   const fm = data;
   const text = [
